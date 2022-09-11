@@ -50,3 +50,6 @@ button {
   color: blue;
   cursor: pointer;
 }
+a {
+  text-align: center;
+}
