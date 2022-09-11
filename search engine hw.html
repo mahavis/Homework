@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/styles.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <form class="form-search" id="form-search">
+          <label for="City" class="form-label"> City name </label>
+          <input
+            type="search"
+            class="form-control"
+            placeholder="▶️ Enter a City...."
+            autofocus="on"
+            autocomplete="off"
+            id="input-city-search"
+          />
+          <br />
+          <input
+            type="submit"
+            value="Search"
+            class="form-control btn btn-primary shadow-sm"
+          />
+        </form>
+        <button>Current Location</button>
+        <h1 id="the-city">Sydney NSW, Australia</h1>
+        <ul>
+          <li id="current-date"></li>
+          <li id="description">Partly Cloudy</li>
+        </ul>
+        <div class="row">
+          <div class="col-6">
+            <img
+              src="data:image/png;base64,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"
+              width="20"
+              alt="Cloudy icon"
+            />
+            <h2 id="current-temp">21</h2>
+            <span class="units">°C</span>
+          </div>
+          <div class="col-6">
+            <ul>
+              <li>Precipitation: 0%</li>
+              <li>Humidity: 77%</li>
+              <li>Wind: 8 km/h</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
